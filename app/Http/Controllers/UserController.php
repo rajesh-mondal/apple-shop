@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\User;
-use App\Mail\OTPMail;
 use App\Helper\JWTToken;
-use Illuminate\Http\Request;
 use App\Helper\ResponseHelper;
+use App\Mail\OTPMail;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {

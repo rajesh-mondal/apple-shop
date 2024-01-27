@@ -28,7 +28,7 @@ class JWTToken
             }
             else{
                 $key =env('JWT_KEY');
-                return JWT::decode($token,new Key($key,'HS256'));
+                return $decode = JWT::decode($token,new Key($key,'HS256'));
             }
         }
         catch (Exception $e){
