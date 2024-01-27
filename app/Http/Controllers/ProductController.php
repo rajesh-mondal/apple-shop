@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductDetails;
 use App\Models\ProductReview;
 use App\Models\ProductSlider;
+use App\Models\ProductWish;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -59,5 +60,27 @@ class ProductController extends Controller {
         } else {
             return ResponseHelper::Out( 'fail', 'Customer profile not exist', 200 );
         }
+    }
+
+    // Wishlist
+    public function ProductWishList( Request $request ): JsonResponse {
+        $user_id = $request->header( 'id' );
+        $data = ProductWish::where( 'user_id', $user_id )->with( 'product' )->get();
+        return ResponseHelper::Out( 'success', $data, 200 );
+    }
+
+    public function CreateWishList( Request $request ): JsonResponse {
+        $user_id = $request->header( 'id' );
+        $data = ProductWish::updateOrCreate(
+            ['user_id' => $user_id, 'product_id' => $request->product_id],
+            ['user_id' => $user_id, 'product_id' => $request->product_id]
+        );
+        return ResponseHelper::Out( 'success', $data, 200 );
+    }
+
+    public function RemoveWishList( Request $request ): JsonResponse {
+        $user_id = $request->header( 'id' );
+        $data = ProductWish::where( ['user_id' => $user_id, 'product_id' => $request->product_id] )->delete();
+        return ResponseHelper::Out( 'success', $data, 200 );
     }
 }
