@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PolicyController;
-use App\Http\Middleware\TokenAuthenticate;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenAuthenticate;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +44,6 @@ Route::get( '/logout', [UserController::class, 'UserLogout'] );
 // User Profile
 Route::post( '/CreateProfile', [ProfileController::class, 'CreateProfile'] )->middleware( [TokenAuthenticate::class] );
 Route::get( '/ReadProfile', [ProfileController::class, 'ReadProfile'] )->middleware( [TokenAuthenticate::class] );
+
+// Product Review
+Route::post( '/CreateProductReview', [ProductController::class, 'CreateProductReview'] )->middleware( [TokenAuthenticate::class] );
