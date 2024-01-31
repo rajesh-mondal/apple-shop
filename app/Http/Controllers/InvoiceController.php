@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class InvoiceController extends Controller {
     function InvoiceCreate( Request $request ) {
         DB::beginTransaction();
-        
+
         try {
             $user_id = $request->header( 'id' );
             $user_email = $request->header( 'email' );
@@ -31,6 +31,7 @@ class InvoiceController extends Controller {
             // Payable Calculation
             $total = 0;
             $cartList = ProductCart::where( 'user_id', '=', $user_id )->get();
+
             foreach ( $cartList as $cartItem ) {
                 $total = $total + $cartItem->price;
             }
@@ -73,5 +74,16 @@ class InvoiceController extends Controller {
             return ResponseHelper::Out( 'fail', $e, 200 );
         }
 
+    }
+
+    function InvoiceList( Request $request ) {
+        $user_id = $request->header( 'id' );
+        return Invoice::where( 'user_id', $user_id )->get();
+    }
+
+    function InvoiceProductList( Request $request ) {
+        $user_id = $request->header( 'id' );
+        $invoice_id = $request->invoice_id;
+        return InvoiceProduct::where( ['user_id' => $user_id, 'invoice_id' => $invoice_id] )->with( 'product' )->get();
     }
 }
