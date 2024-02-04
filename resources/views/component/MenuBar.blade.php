@@ -14,9 +14,7 @@
                     <div class="text-center text-md-end">
                         <ul class="header_list">
                             <li><a href="/policy?type=about">About</a></li>
-                            <li><a href="#"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
-                            <li><a href="#"><i class="ti-heart"></i><span>Wishlist</span></a></li>
-                            <li><a href=""><i class="ti-user"></i><span>Login</span></a></li>
+                            <li><a href="{{url("/profile")}}"> <i class="linearicons-user"></i> Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -61,3 +59,15 @@
         </div>
     </div>
 </header>
+
+<script>
+    Category();
+    async function Category(){
+        let res=await axios.get("/CategoryList");
+        $("#CategoryItem").empty()
+        res.data['data'].forEach((item,i)=>{
+            let EachItem= ` <li><a class="dropdown-item nav-link nav_item" href="/by-category?id=${item['id']}">${item['categoryName']}</a></li>`
+            $("#CategoryItem").append(EachItem);
+        })
+    }
+</script>
