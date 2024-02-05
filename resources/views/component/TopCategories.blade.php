@@ -15,8 +15,7 @@
 </div>
 
 <script>
-    Category();
-    async function Category(){
+    async function TopCategory(){
         let res=await axios.get("/CategoryList");
         $("#TopCategoryItem").empty()
         res.data['data'].forEach((item,i)=>{

@@ -61,7 +61,7 @@
 </header>
 
 <script>
-    Category();
+    // Category();
     async function Category(){
         let res=await axios.get("/CategoryList");
         $("#CategoryItem").empty()

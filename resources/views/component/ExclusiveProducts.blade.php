@@ -59,7 +59,6 @@
 </div>
 
 <script>
-    Popular();
     async function Popular(){
         let res = await axios.get("/ListProductByRemark/popular");
         $("#PopularItem").empty();
@@ -95,7 +94,6 @@
         })
     }
 
-    New();
     async function New(){
         let res = await axios.get("/ListProductByRemark/new");
         $("#NewItem").empty();
@@ -131,7 +129,6 @@
         })
     }
 
-    Top();
     async function Top(){
         let res = await axios.get("/ListProductByRemark/top");
         $("#TopItem").empty();
@@ -167,7 +164,6 @@
         })
     }
 
-    Special();
     async function Special(){
         let res = await axios.get("/ListProductByRemark/special");
         $("#SpecialItem").empty();
@@ -203,7 +199,6 @@
         })
     }
 
-    Trending();
     async function Trending(){
         let res = await axios.get("/ListProductByRemark/trending");
         $("#TrendingItem").empty();
