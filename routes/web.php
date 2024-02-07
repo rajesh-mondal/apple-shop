@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\PolicyController;
-use App\Http\Middleware\TokenAuthenticate;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenAuthenticate;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,8 @@ use App\Http\Controllers\CategoryController;
  */
 
 // Home Page
-Route::get('/', [HomeController::class, 'HomePage']);
+Route::get( '/', [HomeController::class, 'HomePage'] );
+Route::get( '/by-category', [CategoryController::class, 'ByCategoryPage'] );
 
 // Brand List
 Route::get( '/BrandList', [BrandController::class, 'BrandList'] );
