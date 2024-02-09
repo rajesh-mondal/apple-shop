@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
+    public function LoginPage() {
+        return view( 'pages.login-page' );
+    }
+
     public function UserLogin( Request $request ): JsonResponse {
         try {
             $UserEmail = $request->UserEmail;
