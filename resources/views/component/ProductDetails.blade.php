@@ -142,7 +142,7 @@
             } else if (p_color.length === 0) {
                 alert("Product Color Required!");
             } else if (p_qty.length === 0) {
-                alert("Product Quantity Required1");
+                alert("Product Quantity Required!");
             } else {
                 let res = await axios.post("/CreateCartList/", {
                     "product_id": id,
