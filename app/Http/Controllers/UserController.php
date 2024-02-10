@@ -16,6 +16,10 @@ class UserController extends Controller {
         return view( 'pages.login-page' );
     }
 
+    public function VerifyPage() {
+        return view( 'pages.verify-page' );
+    }
+
     public function UserLogin( Request $request ): JsonResponse {
         try {
             $UserEmail = $request->UserEmail;

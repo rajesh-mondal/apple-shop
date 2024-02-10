@@ -5,15 +5,15 @@
                 <div class="login_wrap">
                     <div class="padding_eight_all bg-white">
                         <div class="heading_s1">
-                            <h3>Login</h3>
+                            <h3>Verification</h3>
                         </div>
                         <div class="form-group mb-3">
-                            <input id="email" type="text" required="" class="form-control" name="email"
-                                placeholder="Your Email">
+                            <input id="code" type="text" required="" class="form-control" name="email"
+                                placeholder="Verification Code">
                         </div>
                         <div class="form-group mb-3">
-                            <button onclick="Login()" type="submit" class="btn btn-fill-out btn-block"
-                                name="login">Next</button>
+                            <button onclick="Verify()" type="submit" class="btn btn-fill-out btn-block"
+                                name="login">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -23,15 +23,16 @@
 </div>
 
 <script>
-    async function Login() {
-        let email = document.getElementById('email').value;
-        if (email.length === 0) {
-            alert("Email Required!");
+    async function Verify() {
+        let code = document.getElementById('code').value;
+        let email = sessionStorage.getItem('email');
+
+        if (code.length === 0) {
+            alert("Code Required!");
         } else {
-            let res = await axios.get("/UserLogin/" + email);
+            let res = await axios.get("/VerifyLogin/"+email+"/"+code);
             if (res.status === 200) {
-                sessionStorage.setItem('email', email);
-                window.location.href = "/verify"
+
             }
         }
     }
