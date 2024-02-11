@@ -57,5 +57,22 @@
                             </div>`
             $("#byList").append(EachItem);
         })
+
+        $(".remove").on('click', function() {
+            let id = $(this).data('id');
+            RemoveWishList(id);
+        })
+    }
+
+    async function RemoveWishList(id) {
+        $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+        let res = await axios.get("/RemoveWishList/" + id);
+        $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+
+        if (res.status === 200) {
+            await WishList();
+        } else {
+            alert("Request Fail");
+        }
     }
 </script>
