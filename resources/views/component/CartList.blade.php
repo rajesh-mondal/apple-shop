@@ -74,6 +74,10 @@
 
         await CartTotal(res.data['data']);
 
+        $(".remove").on('click', function() {
+            let id = $(this).data('id');
+            RemoveCartList(id);
+        })
     }
 
     async function CartTotal(data) {
@@ -84,4 +88,14 @@
         $("#total").text(Total);
     }
 
+    async function RemoveCartList(id) {
+        $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+        let res = await axios.get("/DeleteCartList/" + id);
+        $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+        if (res.status === 200) {
+            await CartList();
+        } else {
+            alert("Request Fail")
+        }
+    }
 </script>
