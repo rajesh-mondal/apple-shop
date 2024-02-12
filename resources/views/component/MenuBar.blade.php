@@ -14,7 +14,13 @@
                     <div class="text-center text-md-end">
                         <ul class="header_list">
                             <li><a href="/policy?type=about">About</a></li>
-                            <li><a href="{{url("/profile")}}"> <i class="linearicons-user"></i> Account</a></li>
+
+                            @if(Cookie::get('token') !== null)
+                                <li><a href="{{url("/profile")}}"> <i class="linearicons-user"></i> Account</a></li>
+                                <li><a class="btn btn-danger btn-sm" href="{{url("/logout")}}"> Logout</a></li>
+                            @else
+                                <li><a class="btn btn-danger btn-sm" href="{{url("/login")}}">Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -61,7 +67,6 @@
 </header>
 
 <script>
-    // Category();
     async function Category(){
         let res=await axios.get("/CategoryList");
         $("#CategoryItem").empty()
