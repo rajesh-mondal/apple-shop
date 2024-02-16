@@ -12,7 +12,6 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="review_create-tab" data-bs-toggle="tab" data-bs-target="#review_create-tab-pane" type="button" role="tab" aria-controls="review_create-tab-pane" aria-selected="false">Add Review</button>
                 </li>
-
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -39,5 +38,3 @@
         </div>
     </div>
 </div>
-
-

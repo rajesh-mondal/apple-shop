@@ -180,4 +180,44 @@
             }
         }
     }
+
+    async function AddReview() {
+        let reviewText = document.getElementById('reviewTextID').value;
+        let reviewScore = document.getElementById('reviewScore').value;
+        if (reviewScore.length === 0) {
+            alert("Score Required !")
+        } else if (reviewText.length === 0) {
+            alert("Review Required !")
+        } else {
+            $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+            let postBody = {
+                description: reviewText,
+                rating: reviewScore,
+                product_id: id
+            }
+            let res = await axios.post("/CreateProductReview", postBody);
+            $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+            await productReview();
+        }
+    }
+
+    async function productReview() {
+        let res = await axios.get("/ListReviewByProduct/" + id);
+        let Details = await res.data['data'];
+
+        $("#reviewList").empty();
+
+        Details.forEach((item, i) => {
+            let each = `<li class="list-group-item">
+                <h6>${item['profile']['cus_name']}</h6>
+                <p class="m-0 p-0">${item['description']}</p>
+                <div class="rating_wrap">
+                    <div class="rating">
+                        <div class="product_rate" style="width:${parseFloat(item['rating'])}%"></div>
+                    </div>
+                </div>
+            </li>`;
+            $("#reviewList").append(each);
+        })
+    }
 </script>

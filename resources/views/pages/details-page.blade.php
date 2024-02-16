@@ -8,7 +8,7 @@
     <script>
         (async () => {
             await productDetails();
-            // await productReview();
+            await productReview();
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
